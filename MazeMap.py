@@ -8,7 +8,7 @@ class MazeMap:
     END = 'F'
     WALL = '2'
     PATH = '0'
-    OPEN = {PATH, END}  # map locations you can move to (not WALL or already explored)
+    OPEN = {PATH, END}  # map locations 
 
     RIGHT = Dir(">", 0, 1)
     DOWN = Dir("v", 1, 0)
@@ -45,18 +45,18 @@ class MazeMap:
             # base case - endpoint has been found
             return True
         else:
-            # search recursively in each direction from here
+           
             for dir in MazeMap.DIRS:
                 ny, nx = y + dir.dy, x + dir.dx
-                if self.maze[ny][nx] in MazeMap.OPEN:  # can I go this way?
-                    if self.maze[y][x] != MazeMap.START:  # don't overwrite Maze.START
+                if self.maze[ny][nx] in MazeMap.OPEN:  
+                    if self.maze[y][x] != MazeMap.START:  
                         self.maze[y][x] = dir.char  # mark direction chosen
-                    if self.solve(ny, nx):  # recurse...
+                    if self.solve(ny, nx):  # recurse
                         return True  # solution found!
 
             # no solution found from this location
-            if self.maze[y][x] != MazeMap.START:  # don't overwrite Maze.START
-                self.maze[y][x] = MazeMap.PATH  # clear failed search from map
+            if self.maze[y][x] != MazeMap.START: 
+                self.maze[y][x] = MazeMap.PATH  
             return False
 
 
